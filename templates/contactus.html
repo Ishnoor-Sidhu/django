@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3>Submit Contact Form</h3>
+    
+    <form  method="POST" enctype="multipart/form-data">
+        <!-- Django CSRF -->
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Your Name">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" placeholder="Enter">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone Number </label>
+            <input type="text" name="phone" class="form-control" placeholder="Phone No.">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Subject</label>
+            <input type="text" name="subject" class="form-control" placeholder="Subject">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Message</label>
+            <input type="text" name="message" class="form-control" placeholder="Message">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Upload Image</label>
+            <input type="file" name="image" class="form-control" placeholder="Upload Image">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock%}

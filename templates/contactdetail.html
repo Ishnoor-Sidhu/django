@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<div>
+    <h1>Contact Details</h1>
+    <ul class="list-group">
+  {% for c in det %}
+    <li class="list-group-item">
+        <strong>{{ c.full_name }}</strong> <br>
+        {{ c.email }} <br>
+        {{ c.phone_no }} <br>
+        <em>{{ c.subject }}</em> <br>
+        {{ c.message }}
+    </li>
+  {% empty %}
+    <li class="list-group-item">No contacts found</li>
+  {% endfor %}
+</ul>
+</div>
+
+
+{%endblock%}

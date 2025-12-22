@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Services — Your Company</title>
+  <meta name="description" content="Professional services to help your business grow: Web Development, Design, Marketing, Consulting and more." />
+  <style>
+    :root{
+      --accent:#4f46e5; /* indigo-600 */
+      --muted:#6b7280; /* gray-500 */
+      --bg:#f8fafc; /* light */
+      --card:#ffffff;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#111827;line-height:1.5}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    /* Header */
+    header{padding:18px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#10b981);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    nav{margin-left:auto}
+    nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
+    nav a.primary{background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;padding:36px 0}
+    .hero h1{font-size:clamp(28px,4vw,40px);margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 16px}
+    .cta{display:flex;gap:12px}
+    .btn{padding:12px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--accent);color:white}
+    .btn.ghost{background:transparent;border:2px solid #e6e6f7;color:var(--accent)}
+
+    /* Services grid */
+    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:18px}
+    .card{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.06);border:1px solid rgba(15,23,42,0.03)}
+    .service-icon{width:56px;height:56px;border-radius:10px;display:inline-grid;place-items:center;margin-right:14px;background:linear-gradient(135deg,#eef2ff,#eefaf6)}
+    .service-head{display:flex;align-items:center}
+    .service-title{font-size:18px;margin:0}
+    .service-desc{color:var(--muted);margin-top:10px}
+
+    /* Pricing / CTA strip */
+    .strip{margin:28px 0;padding:20px;border-radius:12px;background:linear-gradient(90deg,#fff,#fafafa);display:flex;justify-content:space-between;align-items:center}
+
+    /* Testimonials */
+    .testimonials{display:grid;grid-template-columns:repeat(1,1fr);gap:12px}
+    .testimonial{padding:16px;background:linear-gradient(180deg,#fff,#fbfbff);border-radius:12px;border:1px solid rgba(15,23,42,0.03)}
+    .muted{color:var(--muted)}
+
+    footer{padding:26px 0;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media(min-width:760px){
+      .hero{grid-template-columns:1fr 420px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .testimonials{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(min-width:1100px){
+      .grid{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header style="display:flex;align-items:center">
+      <div class="brand">
+        <div class="logo">YC</div>
+        <div>
+          <div style="font-weight:800">Your Company</div>
+          <div class="muted" style="font-size:13px">Solutions that move you forward</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="primary">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1>Services built to scale — delivered with care</h1>
+        <p>We partner with ambitious teams to design, build and grow digital products. Pick the service that fits your stage and let's get to work.</p>
+        <div class="cta">
+          <button class="btn primary" onclick="location.href='#contact'">Get a Quote</button>
+          <button class="btn ghost" onclick="location.href='#services'">Explore Services</button>
+        </div>
+      </div>
+
+      <!-- Quick contact card -->
+      <aside class="card" style="max-width:420px">
+        <strong>Ready to start?</strong>
+        <p class="muted">Share a few details and we’ll send a tailored proposal.</p>
+        <form id="leadForm" onsubmit="event.preventDefault();alert('Thanks — we\'ll be in touch!');">
+          <div style="margin-top:12px">
+            <input required name="name" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6f2;margin-bottom:8px" />
+            <input required name="email" type="email" placeholder="Email" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6f2;margin-bottom:8px" />
+            <textarea name="message" placeholder="Brief project description" style="width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6f2;min-height:72px"></textarea>
+          </div>
+          <div style="margin-top:10px;text-align:right">
+            <button class="btn primary" type="submit">Send</button>
+          </div>
+        </form>
+      </aside>
+    </section>
+
+    <!-- Services grid -->
+    <section id="services">
+      <h2 style="margin-top:6px">What we do</h2>
+      <p class="muted">Modular services — mix and match as you need.</p>
+
+      <div class="grid" style="margin-top:14px">
+        <!-- Service item (repeatable) -->
+        <article class="card">
+          <div class="service-head">
+            <div class="service-icon">
+              <!-- simple svg icon -->
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 6h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Product Design</h3>
+              <div class="muted" style="font-size:13px">UX research, UI design, prototyping</div>
+            </div>
+          </div>
+          <p class="service-desc">We craft interfaces that are clear, usable and delightful across devices — from early wireframes to pixel-perfect design systems.</p>
+        </article>
+
+        <article class="card">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M6 20c1.5-4 4.5-6 6-6s4.5 2 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Web & App Development</h3>
+              <div class="muted" style="font-size:13px">Frontend, backend, mobile</div>
+            </div>
+          </div>
+          <p class="service-desc">Robust, maintainable code and accessible experiences. We ship production-ready web and mobile applications with CI/CD and testing.</p>
+        </article>
+
+        <article class="card">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M8 20h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Brand & Visual Identity</h3>
+              <div class="muted" style="font-size:13px">Logos, guidelines, campaigns</div>
+            </div>
+          </div>
+          <p class="service-desc">A consistent brand helps you stand out. We create visual systems that scale across marketing, product and print.</p>
+        </article>
+
+        <article class="card">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M3 10h18" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M6 6v8" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Digital Marketing</h3>
+              <div class="muted" style="font-size:13px">SEO, Ads, Content</div>
+            </div>
+          </div>
+          <p class="service-desc">We grow traffic and conversions through data-driven campaigns, content strategy and performance optimisation.</p>
+        </article>
+
+        <article class="card">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M12 3v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Strategy & Consulting</h3>
+              <div class="muted" style="font-size:13px">Roadmaps, ops, GTM</div>
+            </div>
+          </div>
+          <p class="service-desc">From product strategy to go-to-market planning, we help you align teams and prioritise what moves the needle.</p>
+        </article>
+
+        <article class="card">
+          <div class="service-head">
+            <div class="service-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="service-title">Support & Maintenance</h3>
+              <div class="muted" style="font-size:13px">SLA-driven support</div>
+            </div>
+          </div>
+          <p class="service-desc">Keep systems healthy with monitoring, updates and fast incident response. Custom SLAs available.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Strip CTA -->
+    <div class="strip" style="margin-top:20px">
+      <div>
+        <strong>Need a custom package?</strong>
+        <div class="muted" style="font-size:13px">We build custom engagements for startups, SMBs and enterprises.</div>
+      </div>
+      <div>
+        <button class="btn primary" onclick="location.href='#contact'">Request Proposal</button>
+      </div>
+    </div>
+
+    <!-- Testimonials + FAQ -->
+    <section style="display:grid;grid-template-columns:1fr;gap:18px">
+      <div>
+        <h3>What clients say</h3>
+        <div class="testimonials" style="margin-top:12px">
+          <div class="testimonial">
+            <div style="font-weight:700">"Transformed our product"</div>
+            <div class="muted" style="font-size:13px">The team redesigned our checkout and improved conversions by 27% within two months.</div>
+          </div>
+          <div class="testimonial">
+            <div style="font-weight:700">"Reliable and proactive"</div>
+            <div class="muted" style="font-size:13px">Support and maintenance that actually anticipates issues before they happen.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3>FAQ</h3>
+        <div class="card" style="margin-top:12px">
+          <strong>How do you price projects?</strong>
+          <p class="muted">We offer fixed-price for defined-scope work and retainer / time & materials for ongoing engagements. Free initial scoping call.</p>
+          <hr style="border:none;border-top:1px solid #f1f5f9;margin:12px 0"/>
+          <strong>Do you sign NDAs?</strong>
+          <p class="muted">Yes — we sign NDAs and can work with your procurement requirements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="margin-top:22px">
+      <h3>Contact us</h3>
+      <div class="card" style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <div style="flex:1;min-width:240px">
+          <p class="muted">Email us at <a href="mailto:hello@yourcompany.com">hello@myapp.com</a> or fill out the form in the hero to get a proposal.</p>
+        </div>
+        <div style="min-width:200px;text-align:right">
+          <small class="muted">Office hours: Mon—Fri, 9:00 — 18:00</small>
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-top:28px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div>&copy; <span id="year"></span> My app — All rights reserved.</div>
+        <div class="muted">Made with care • <a href="#">Privacy</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // small niceties
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+{%endblock%}
